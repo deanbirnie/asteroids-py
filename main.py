@@ -11,6 +11,9 @@ def main():
 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+    # Instantiate a player object
+    player = Player(x=(SCREEN_WIDTH / 2), y=(SCREEN_HEIGHT / 2))
+
     while (1):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -18,8 +21,6 @@ def main():
         
         screen.fill("black")
 
-        # Instantiate a player object
-        player = Player(x=(SCREEN_WIDTH / 2), y=(SCREEN_HEIGHT / 2))
         player.draw(screen)
 
         pygame.display.flip()
@@ -27,6 +28,8 @@ def main():
         # limit FPS to 60 and decouple game from CPU cycles
         dt = game_clock.tick(60) / 1000
 
+        player.update(dt)
+        
 
 if __name__ == "__main__":
     main()
