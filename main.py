@@ -1,4 +1,5 @@
 import pygame
+import sys
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
 from constants import *
@@ -43,6 +44,11 @@ def main():
         dt = game_clock.tick(60) / 1000
 
         updatable.update(dt)
+
+        for asteroid in asteroids:
+            if player.check_collision(asteroid):
+                print("Game over!")
+                sys.exit(0)
         
 
 if __name__ == "__main__":
